@@ -20,11 +20,19 @@ A neural radiance field is a simple fully connected network (weights are ~5MB) t
 
 Optimizing a NeRF takes between a few hours and a day or two (depending on resolution) and only requires a single GPU. Rendering an image from an optimized NeRF takes somewhere between less than a second and ~30 seconds, again depending on resolution.
 
-## Uncertainty in NeRF
+## NeRF Ensemble
 
-(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
+<!-- TO BE WRITTEN -->
 
 ![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
+
+<!-- Explain the pipeline figure -->
+
+## Uncertainty in NeRF
+
+<!-- TO BE WRITTEN -->
+
+(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
 
 <!-- ![Primary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
 
