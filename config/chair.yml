@@ -2,7 +2,6 @@
 experiment:
   # Unique experiment identifier
   id: chair
-  #id: chair-lowres3
   # Experiment logs will be stored at "logdir"/"id"
   logdir: logs
   # Seed for random number generators (for repeatability).
@@ -29,7 +28,6 @@ dataset:
   cachedir: cache/chaircache200
   # For the Blender datasets (synthetic), optionally return images
   # at half the original resolution of 800 x 800, to save space.
-  #half_res: True
   half_res: False
   # Stride (include one per "testskip" images in the dataset).
   testskip: 1
@@ -48,11 +46,9 @@ models:
     # Name of the torch.nn.Module class that implements the model.
     type: FlexibleNeRFModel
     # Number of layers in the model.
-    #num_layers: 4
     num_layers: 8
     # Number of hidden units in each layer of the MLP (multi-layer
     # perceptron).
-    #hidden_size: 128
     hidden_size: 256
     # Add a skip connection once in a while. Note: This parameter
     # won't take affect unless num_layers > skip_connect_every.
@@ -81,11 +77,9 @@ models:
     # Name of the torch.nn.Module class that implements the model.
     type: FlexibleNeRFModel
     # Number of layers in the model.
-    #num_layers: 4
     num_layers: 8
     # Number of hidden units in each layer of the MLP (multi-layer
     # perceptron).
-    #hidden_size: 128
     hidden_size: 256
     # Add a skip connection once in a while. Note: This parameter
     # won't take affect unless num_layers > skip_connect_every.
@@ -140,24 +134,16 @@ nerf:
   train:
     # Number of random rays to retain from each image.
     # These sampled rays are used for training, and the others are discarded.
-    #num_random_rays: 4096  # 32 * 32 * 4
-    #num_random_rays: 1024
     num_random_rays: 2048
     # Size of each chunk (rays are batched into "chunks" and passed through
     # the network)
-    chunksize: 8192  # 131072  # 1024 * 32
-    #chunksize: 81920
-    #chunksize: 90112
+    chunksize: 8192
     # Whether or not to perturb the sampled depth values.
     perturb: True
     # Number of depth samples per ray for the coarse network.
-    #num_coarse: 32
     num_coarse: 64
-    #num_coarse: 96
     # Number of depth samples per ray for the fine network.
     num_fine: 128
-    #num_fine: 64
-    #num_fine: 96
     # Whether to render models using a white background.
     white_background: False
     # Standard deviation of noise to be added to the radiance field when
@@ -169,19 +155,13 @@ nerf:
   validation:
     # Number of random rays to retain from each image.
     # These sampled rays are used for training, and the others are discarded.
-    #chunksize: 8192   # 1024 * 32
-    #chunksize: 81920
     chunksize: 40000
     # Whether or not to perturb the sampled depth values.
     perturb: False
     # Number of depth samples per ray for the coarse network.
-    #num_coarse: 32
     num_coarse: 64
-    #num_coarse: 96
     # Number of depth samples per ray for the fine network.
     num_fine: 128
-    #num_fine: 64
-    #num_fine: 96
     # Whether to render models using a white background.
     white_background: False
     # Standard deviation of noise to be added to the radiance field when
@@ -201,11 +181,9 @@ models_secondary:
     type: FlexibleNeRFModel
     # Number of layers in the model.
     num_layers: 4
-    #num_layers: 8
     # Number of hidden units in each layer of the MLP (multi-layer
     # perceptron).
     hidden_size: 128
-    #hidden_size: 256
     # Add a skip connection once in a while. Note: This parameter
     # won't take affect unless num_layers > skip_connect_every.
     skip_connect_every: 3
@@ -234,11 +212,9 @@ models_secondary:
     type: FlexibleNeRFModel
     # Number of layers in the model.
     num_layers: 4
-    #num_layers: 8
     # Number of hidden units in each layer of the MLP (multi-layer
     # perceptron).
     hidden_size: 128
-    #hidden_size: 256
     # Add a skip connection once in a while. Note: This parameter
     # won't take affect unless num_layers > skip_connect_every.
     skip_connect_every: 3
