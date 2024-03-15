@@ -22,8 +22,9 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 
 ## NeRF Ensemble
 
-This NeRF Ensemble is inspired by [Density-aware NeRF Ensemble](https://arxiv.org/abs/2209.08718) and [Deep Ensemble](https://arxiv.org/abs/1612.01474)
+This NeRF Ensemble model is inspired by [Density-aware NeRF Ensemble](https://arxiv.org/abs/2209.08718) and [Deep Ensemble](https://arxiv.org/abs/1612.01474). This model estimates the [NeRF](http://tancik.com/nerf) model uncertainty based on estimated color **c** and volume density $\boldsymbol{\sigma}$ from several neural networks with varying parameter initialization that captures epistemic uncertainty.
 
+Following figure illustrates the Ensemble model pipeline. 
 ![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
 
 <!-- EXPLAIN THE PIPLELINE FIGURE -->
