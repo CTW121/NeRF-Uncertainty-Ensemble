@@ -22,9 +22,9 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 
 ## NeRF Ensemble
 
-This NeRF Ensemble model is inspired by [Density-aware NeRF Ensemble](https://arxiv.org/abs/2209.08718) and [Deep Ensemble](https://arxiv.org/abs/1612.01474). This model estimates the [NeRF](http://tancik.com/nerf) model uncertainty based on estimated color $\boldsymbol{c}$ and volume density $\sigma$ from several neural networks with varying parameter initialization that captures epistemic uncertainty.
+This NeRF Ensemble model is inspired by [Density-aware NeRF Ensemble](https://arxiv.org/abs/2209.08718) and [Deep Ensemble](https://arxiv.org/abs/1612.01474). This model estimates the [NeRF](http://tancik.com/nerf) model uncertainty based on estimated color $\boldsymbol{c}$ and volume density $\sigma$ from several multilayer perceptron (MLPs) with varying parameter initialization that captures epistemic uncertainty.
 
-Following figure illustrates the Ensemble model pipeline. 
+Following figure illustrates the Ensemble model pipeline.
 ![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
 
 <!-- EXPLAIN THE PIPLELINE FIGURE -->
@@ -32,6 +32,8 @@ Following figure illustrates the Ensemble model pipeline.
 <!-- ![Primary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
 
 <!-- ![Secondary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
+
+After training the model, the uncertainty estimated by the model can be visualized using our uncertainty visualization tool, see section [Visualization uncertainty in NeRF Ensemble](## Visualization uncertainty in NeRF Ensemble) for more information. 
 
 ## How to train NeRF Ensemble
 
@@ -55,6 +57,6 @@ Refer to [nerf-pytorch](https://github.com/krrish94/nerf-pytorch) for the detail
 
 ## Visualization uncertainty in NeRF Ensemble
 
-<!-- TO BE WRITTEN -->
+The uncertainty estimated by the NeRF Ensemble model can be visualized using uncertainty visualization tool [NeRFDeltaView Ensemble](https://github.com/CTW121/NeRFDeltaView-Ensemble).
 
-[NeRFDeltaView Ensemble](https://github.com/CTW121/NeRFDeltaView-Ensemble)
+Uncertainty visualization provides users with an in-depth understanding of the data for analysis and to perform confident and informed decision-making. The main purpose of our tool is to highlight the significance of interactive visualization in enabling users to explore the estimated uncertainty in synthesized scenes, identify model limitations, and aid in understanding NeRF model uncertainty.
