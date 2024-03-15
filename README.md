@@ -22,9 +22,7 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 
 ## NeRF Ensemble
 
-<!-- TO BE WRITTEN -->
-
-<!-- Research papers source -->
+This NeRF Ensemble is inspired by [Density-aware NeRF Ensemble](https://arxiv.org/abs/2209.08718) and [Deep Ensemble](https://arxiv.org/abs/1612.01474)
 
 ![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
 
