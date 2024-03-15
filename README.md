@@ -24,16 +24,28 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 
 <!-- TO BE WRITTEN -->
 
+<!-- Research papers source -->
+
 ![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
 
-<!-- Explain the pipeline figure -->
-
-## Uncertainty in NeRF
-
-<!-- TO BE WRITTEN -->
-
-(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
+<!-- EXPLAIN THE PIPLELINE FIGURE -->
 
 <!-- ![Primary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
 
 <!-- ![Secondary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
+
+## How to train NeRF Ensemble
+
+### Run training!
+<!-- TO BE WRITTEN -->
+
+### Optional: Resume training from a checkpoint
+
+
+Refer to [nerf-pytorch](https://github.com/krrish94/nerf-pytorch) for the detail of implementation and model training.
+
+## Visualization uncertainty in NeRF Ensemble
+
+<!-- TO BE WRITTEN -->
+
+(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
