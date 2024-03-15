@@ -33,7 +33,7 @@ Following figure illustrates the Ensemble model pipeline.
 
 <!-- ![Secondary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
 
-After training the model, the uncertainty estimated by the model can be visualized using our uncertainty visualization tool, see section [Visualization uncertainty in NeRF Ensemble](## visualization-uncertainty-in-NeRF-Ensemble) for more information. 
+After training the model, the uncertainty estimated by the model can be visualized using our uncertainty visualization tool, see section [Visualization uncertainty in NeRF Ensemble](##visualization-uncertainty-in-NeRF-Ensemble) for more information. 
 
 ## How to train NeRF Ensemble
 
