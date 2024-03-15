@@ -74,15 +74,8 @@ def main():
                 testskip=cfg.dataset.testskip,
             )
             i_train, i_val, i_test = i_split
-            # print("i_split: \n", i_split)
-            
-            # print(images.size())    # torch.Size([400, 400, 400, 4])
-            # => train 100 + val 100 + test 200 = 400
-            # => image resolution reduce to half from 800x800 to 400x400 (resolution can be change in nerf/load_blender.py)
-            # => 4 ???
             
             H, W, focal = hwf
-            # print(hwf)  # [400, 400, 555.5555155968841]
 
             H, W = int(H), int(W)
             hwf = [H, W, focal]
@@ -124,15 +117,8 @@ def main():
         device = "cpu"
     print(device)
 
-    #print("image: ", images[i_test[0]].size())
-    #testimg_ = images[i_test[168]].numpy()
     testimg_ = images[i_test[cfg.nerf.validation.img]].numpy()
     testimg = testimg_[:,:,:3]
-    # print("type(testimg): ", type(testimg))
-    # print("testimg.ndim: ", testimg.ndim)
-    # print("testimg.shape: ", testimg.shape)
-    # print("testimg.dtype: ", testimg.dtype)
-    # matplotlib.image.imsave('testimg.png', testimg)
     matplotlib.image.imsave('testimg_{}.png'.format(str(cfg.experiment.id)), testimg)
 
     encode_position_fn = get_embedding_function(
@@ -140,8 +126,7 @@ def main():
         include_input=cfg.models.coarse.include_input_xyz,
         log_sampling=cfg.models.coarse.log_sampling_xyz,
     )
-    # print(encode_position_fn)   # <function get_embedding_function.<locals>.<lambda> at 0x7f56fb1a64c0>
-    # print(type(encode_position_fn)) # <class 'function'>
+
     encode_position_fn_secondary = get_embedding_function(
         num_encoding_functions=cfg.models_secondary.coarse.num_encoding_fn_xyz,
         include_input=cfg.models_secondary.coarse.include_input_xyz,
@@ -155,8 +140,7 @@ def main():
             include_input=cfg.models.coarse.include_input_dir,
             log_sampling=cfg.models.coarse.log_sampling_dir,
         )
-    # print(encode_direction_fn)  # <function get_embedding_function.<locals>.<lambda> at 0x7f99f4d73550>
-    # print(type(encode_direction_fn))    # <class 'function'>
+    
     encode_direction_fn_secondary = None
     if cfg.models_secondary.coarse.use_viewdirs:
         encode_direction_fn_secondary = get_embedding_function(
@@ -180,7 +164,6 @@ def main():
     print("model_coarse: \n", model_coarse)
     # coarse_state_dict = model_coarse.state_dict()
     # first_layer_weights = coarse_state_dict['layer1.weight']
-    # print(first_layer_weights)
 
     # If a fine-resolution model is specified, initialize it. (primary fine model)
     model_fine = None
@@ -196,17 +179,6 @@ def main():
             use_viewdirs=cfg.models.fine.use_viewdirs,
         )
         model_fine.to(device)
-    # model_fine = getattr(models, cfg.models.fine.type)(
-    #     num_layers=cfg.models.fine.num_layers,
-    #     hidden_size=cfg.models.fine.hidden_size,
-    #     skip_connect_every=cfg.models.fine.skip_connect_every,
-    #     num_encoding_fn_xyz=cfg.models.fine.num_encoding_fn_xyz,
-    #     num_encoding_fn_dir=cfg.models.fine.num_encoding_fn_dir,
-    #     include_input_xyz=cfg.models.fine.include_input_xyz,
-    #     include_input_dir=cfg.models.fine.include_input_dir,
-    #     use_viewdirs=cfg.models.fine.use_viewdirs,
-    # )
-    # model_fine.to(device)
     print("model_fine: \n", model_fine)
 
     # *** Secondary coarse models *** #
@@ -227,8 +199,6 @@ def main():
         coarse_model_secondary_list[i].to(device)
     #     coarse_state_dict_secondary = model_coarse_secondary.state_dict()
     #     first_layer_weights = coarse_state_dict_secondary['layer1.weight']
-    #     print("i: ", i)
-    #     print(first_layer_weights)
     # for model in coarse_model_secondary_list:
     #    print(next(model.parameters()).device)
 
@@ -250,8 +220,6 @@ def main():
             fine_model_secondary_list[i].to(device)
         #     fine_state_dict_secondary = model_fine_secondary.state_dict()
         #     first_layer_weights = fine_state_dict_secondary['layer1.weight']
-        #     print("i: ", i)
-        #     print(first_layer_weights)
         # for model in fine_model_secondary_list:
         #     print(next(model.parameters()).device)
 
@@ -367,14 +335,10 @@ def main():
                 meshgrid_xy(torch.arange(H).to(device), torch.arange(W).to(device)),
                 dim=-1,
             )
-            # print(coords.size())    # torch.Size([400, 400, 2])
             coords = coords.reshape((-1, 2))
-            # print(coords.size())    # torch.Size([160000, 2]) ===> 400x400 = 160000, 2 = x and y
             select_inds = np.random.choice(
                 coords.shape[0], size=(cfg.nerf.train.num_random_rays), replace=False
             )
-            # print(select_inds.shape)   # (1024,)
-            # print(select_inds)  # [153138 159887  70682 ...   8663 156114 135083]
             select_inds = coords[select_inds]
             ray_origins = ray_origins[select_inds[:, 0], select_inds[:, 1], :]
             ray_directions = ray_directions[select_inds[:, 0], select_inds[:, 1], :]
@@ -574,8 +538,6 @@ def main():
                 # )
                 tqdm.write("[validation] Loss: {:.4f} | PSNR: {:.4f}".format(loss.item(), psnr))
 
-        # TODO: Checkpoint: save secondary coarse and fine models
-
         if i % cfg.experiment.save_every == 0 or i == cfg.experiment.train_iters - 1:
             checkpoint_dict = {
                 "iter": i,
@@ -618,8 +580,6 @@ def main():
 
             with torch.no_grad():
                 rgb_coarse, rgb_fine = None, None
-                #test_ray_values = None
-                #img_idx = i_test[168]
                 img_idx = i_test[cfg.nerf.validation.img]
                 img_test = images[img_idx].to(device)
                 pose_test = poses[img_idx, :3, :4].to(device)
@@ -644,24 +604,7 @@ def main():
                     encode_position_fn=encode_position_fn,
                     encode_direction_fn=encode_direction_fn,
                 )
-                #test_ray_values = img_test
-
-                # print("rgb_fine.shape: ", rgb_fine.shape)
-                # plt.imshow(rgb_coarse.detach().cpu().numpy())
-                # plt.savefig(os.path.join(logdir, "coarse_" + str(i).zfill(6) + ".png"))
-                # plt.close("all")
-
-                # rgb_fine_arr = rgb_fine.detach().cpu().numpy()
-                # print("rgb_fine_arr.shape: ", rgb_fine_arr.shape)
-                # plt.imshow(rgb_fine.detach().cpu().numpy())
-                # plt.savefig(os.path.join(logdir, "fine_" + str(i).zfill(6) + ".png"))
-                # plt.close("all")
-
-                # savefile = os.path.join(logdir, f"coarse_{i:06d}.png")
-                # imageio.imwrite(
-                #     savefile, cast_to_image(rgb_coarse[..., :3])
-                # )
-                #print("rgb_fine: \n", rgb_fine)
+                
                 savefile = os.path.join(logdir, f"fine_{i:06d}.png")
                 imageio.imwrite(
                     savefile, cast_to_image(rgb_fine[..., :3])
