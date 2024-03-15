@@ -48,4 +48,4 @@ Refer to [nerf-pytorch](https://github.com/krrish94/nerf-pytorch) for the detail
 
 <!-- TO BE WRITTEN -->
 
-(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
+[NeRFDeltaView Ensemble](https://github.com/CTW121/NeRFDeltaView-Ensemble)
