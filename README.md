@@ -37,10 +37,20 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 ## How to train NeRF Ensemble
 
 ### Run training!
-<!-- TO BE WRITTEN -->
+
+First edit `config/chair.yml` to specify your own parameters.
+
+The training script can be invoked by running
+```bash
+python train_nerf.py --config config/chair.yml
+```
 
 ### Optional: Resume training from a checkpoint
 
+Resume training from a previous checkpoint, run
+```bash
+python train_nerf.py --config config/chair.yml --load-checkpoint path/to/checkpoint.ckpt
+```
 
 Refer to [nerf-pytorch](https://github.com/krrish94/nerf-pytorch) for the detail of implementation and model training.
 
