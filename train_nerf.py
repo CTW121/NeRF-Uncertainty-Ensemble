@@ -383,8 +383,6 @@ def main():
                     encode_direction_fn=encode_direction_fn_secondary,
                 )
 
-                # https://discuss.pytorch.org/t/only-update-weight-of-one-model-in-training/140223
-
                 coarse_loss_secondary = torch.nn.functional.mse_loss(
                     rgb_coarse_secondary[..., :3], target_ray_values[..., :3]
                 )
