@@ -22,3 +22,10 @@ Optimizing a NeRF takes between a few hours and a day or two (depending on resol
 
 ## Uncertainty in NeRF
 
+(NeRFDeltaView Ensemble)[https://github.com/CTW121/NeRFDeltaView-Ensemble]
+
+![NeRF Uncertainty Ensemble pipeline](https://github.com/CTW121/NeRF-Uncertainty-Ensemble/blob/master/images/Ensemble_pipeline.png)
+
+<!-- ![Primary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
+
+<!-- ![Secondary multilayer perceptron architecture in the NeRF Uncertainty Ensemble]() -->
